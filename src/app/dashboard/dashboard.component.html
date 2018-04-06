@@ -1,3 +1,13 @@
-<div class="dlex-container">
-  <mat-card>Work!</mat-card>
+<div class="flex-container">
+  <mat-card>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Title</mat-card-title>
+    <mat-card-subtitle>Holding Time</mat-card-subtitle>
+    <span *ngIf="product.click_count==0;then clear else blink"></span>
+		<ng-template #clear><img mat-card-image src="{{product.img}}" alt="{{product.name}}" (click)="showTheGrid(product)">
+</ng-template>
+		<ng-template #blink><img mat-card-image src="{{product.img}}" alt="{{product.name}}">
+</ng-template>
+
+  </mat-card>
 </div>
