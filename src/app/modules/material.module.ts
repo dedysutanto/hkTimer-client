@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CdkTableModule } from '@angular/cdk/table';
 
 import {
   MatButtonModule,
@@ -18,6 +19,7 @@ import {
     MatCardModule
 ],
 exports: [
+    CdkTableModule,
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,

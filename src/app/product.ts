@@ -8,4 +8,8 @@ export class Product {
     isTimerRunning: boolean;
     isClicked: boolean;
     uuid: string;
+
+    constructor(value: Object = {}) {
+        Object.assign(this, value);
+    }
 }
