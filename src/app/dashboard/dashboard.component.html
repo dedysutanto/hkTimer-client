@@ -1,3 +1,28 @@
+<div class="container" *ngIf="!isDashboard">
+  <div class="row" #clear>
+    <div [ngClass]="isWarning ? 'card bg-warning mb-3' : 'card border-secondary mb-3'" style="max-width: 20rem;" *ngFor="let product of products">
+      <div class="card-header">
+        <h4>
+
+          <div class="card-title">
+            <img src="https://www.hokben.co.id/assets-front/img/logo.png" width="30" height="30"> {{ product.name }}</div>
+        </h4>
+        <div class="card-text">Holding Time: {{ product.duration }} minutes</div>
+      </div>
+      <div class="card-body">
+        <span *ngIf="product.isClicked;then clear else blink"></span>
+        <ng-template #clear>
+          <img class="img-fluid" src="{{product.img}}" alt="{{product.name}}">
+        </ng-template>
+        <ng-template #blink>
+          <img class="img-fluid" src="{{product.img}}" alt="{{product.name}}">
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="flex-container" *ngIf="isDashboard">
   <mat-card class="example-card" *ngFor="let product of products">
     <mat-card-header>
@@ -7,47 +32,12 @@
         <!--countdown-timer [start]="'2018-03-10 00:00:00'"></countdown-timer-->
       </mat-card-subtitle>
     </mat-card-header>
-    <span *ngIf="product.isClicked;then clear else blink"></span>
+    <span *ngIf="product.isClicked==0;then clear else blink"></span>
     <ng-template #clear>
       <img mat-card-image src="{{product.img}}" alt="{{product.name}}" (click)="showTheGrid(product)">
     </ng-template>
     <ng-template #blink>
       <img mat-card-image src="{{product.img}}" alt="{{product.name}}">
     </ng-template>
-    <mat-card-actions *ngIf="product.display > 0">
-      <!--			<span class="centered-big-text">{{product.count_down_text}}</span>
-  <span class="centered-big-text">
-    </span>
-  -->
-      <span class="centered-big-text">
-        <!--
-          <countdown id="{{product.name}}-{{product.id}}" [config]="{leftTime: product.timeleft, 'template': '$!h!:$!m!:$!s!'}" #cdalam (event)="onEvent($event)"></countdown>
-  -->
-
-      </span>
-      <mat-card-actions>
-        <button mat-raised-button color="accent">DETAIL</button>
-        <button mat-raised-button color="warn">STOP TIMER</button>
-        <!--<button mat-raised-button color="warn" (click)="stopProductTimer(product)">STOP TIMER</button>-->
-      </mat-card-actions>
-    </mat-card-actions>
   </mat-card>
-</div>
-
-<div class="container" *ngIf="!isDashboard">
-  <div class="row" #clear>
-
-            <div [ngClass]="isWarning ? 'card bg-warning mb-3' : 'card border-secondary mb-3'" style="max-width: 20rem;" *ngFor="let product of products">
-      <div class="card-header">
-        <h4>
-          
-          <div class="card-title"><img src="https://www.hokben.co.id/assets-front/img/logo.png" width="30" height="30">  {{ product.name }}</div>
-        </h4>
-        <div class="card-text">Holding Time: {{ product.duration }} minutes</div>
-      </div>
-      <div class="card-body">
-        <img class="img-fluid" src="{{ product.img }}" alt="{{ product.name }}">
-      </div>
-    </div>
-  </div>
 </div>

@@ -10,7 +10,7 @@ import { Product } from '../product';
 export class DashboardComponent implements OnInit {
 
   products: Product[] = [];
-  isDashboard = false;
+  isDashboard = true;
 
   constructor(
     private productservice: ProductService

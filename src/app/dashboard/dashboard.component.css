@@ -1,4 +1,12 @@
-@import 'https://bootswatch.com/4/journal/bootstrap.min.css';
+.example-card {
+    max-width: 220px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://www.hokben.co.id/assets-front/img/logo.png');
+    background-size: cover;
+  } 
+
 
 .flex-container {
     padding: 0;
@@ -11,4 +19,4 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-  }
+  }  
