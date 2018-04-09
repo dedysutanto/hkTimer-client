@@ -1,53 +1,104 @@
-<!--
-  <div class="container" *ngIf="!isDashboard">
-  <div class="row" #clear>
-    <div [ngClass]="isWarning ? 'card bg-warning mb-3' : 'card border-secondary mb-3'" style="max-width: 20rem;" *ngFor="let product of products">
-      <div class="card-header">
-        <h4>
-
-          <div class="card-title">
-            <img src="https://www.hokben.co.id/assets-front/img/logo.png" width="30" height="30"> {{ product.name }}</div>
-        </h4>
-        <div class="card-text">Holding Time: {{ product.duration }} minutes</div>
-      </div>
-      <div class="card-body">
-        <span *ngIf="product.isClicked;then clear else blink"></span>
-        <ng-template #clear>
-          <img class="img-fluid" src="{{product.img}}" alt="{{product.name}}">
-        </ng-template>
-        <ng-template #blink>
-          <img class="img-fluid" src="{{product.img}}" alt="{{product.name}}">
-        </ng-template>
-      </div>
-    </div>
-  </div>
-</div>
--->
-
 <div class="flex-container" *ngIf="isDashboard">
   <mat-card color="warn" class="example-card" *ngFor="let product of products">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{product.name}}</mat-card-title>
-      <mat-card-subtitle>Holding Time: {{product.duration}} hour(s)
-        <!--countdown-timer [start]="'2018-03-10 00:00:00'"></countdown-timer-->
-      </mat-card-subtitle>
+      <mat-card-subtitle>Holding Time: {{product.duration}} min</mat-card-subtitle>
     </mat-card-header>
-    <span *ngIf="product.isClicked==0;then clear else blink"></span>
+    <span *ngIf="!product.isClicked;then clear else blink"></span>
     <ng-template #clear>
-      <img mat-card-image src="{{product.img}}" alt="{{product.name}}" (click)="showTheGrid(product)">
+      <img mat-card-image src="{{product.img}}" alt="{{product.name}}" (click)="showTheGrid(product, false)">
     </ng-template>
     <ng-template #blink>
       <img mat-card-image src="{{product.img}}" alt="{{product.name}}">
     </ng-template>
+
+    <mat-card-content *ngIf="product.displayed_item > 0" style="text-align: center">
+      <span [ngClass]="(product.isWarning)?'centered-big-blink':'centered-big-text'">
+        <!--
+          <countdown #countdown [config]="{ demand: true, leftTime: product.left_time, 
+          -->
+          <countdown #cd1 [config]="{ demand: !product.isTimerRunning, leftTime: product.left_time, 
+            template: '$!h!:$!m!:$!s!', 
+            notify: product.notify }" (finished)="onFinished(product)" (event)="onEvent($event, product)"></countdown>
+      </span>
+      <table align="center">
+        <tr>
+          <th>Display Item</th>
+          <th>Wasted Item</th>
+        </tr>
+        <tr>
+          <td>
+            <button mat-raised-button color="primary" (click)="showTheGrid(product, false)">{{product.displayed_item}}</button>
+          </td>
+          <td>
+            <button mat-raised-button color="primary" (click)="showTheGrid(product, true)">{{product.wasted_item}}</button>
+          </td>
+        </tr>
+      </table>
+      <table align="center">
+        <tr>
+          <th>Display Start</th>
+          <th>Display End</th>
+        </tr>
+        <tr>
+          <td>
+            <button mat-raised-button>
+              <div *ngIf="(product.isClicked || product.isTimerRunning)">{{product.start_time|date:'HH:mm:ss'}}</div>
+              <div *ngIf="!(product.isClicked || product.isTimerRunning)">00:00:00</div>
+            </button>
+          </td>
+          <td>
+            <button mat-raised-button>
+              <div *ngIf="(product.isClicked || product.isTimerRunning)">{{product.end_time|date:'HH:mm:ss'}}</div>
+              <div *ngIf="!(product.isClicked || product.isTimerRunning)">00:00:00</div>
+            </button>
+          </td>
+        </tr>
+      </table>
+      <mat-card-actions>
+        <!--
+          <button mat-raised-button (click)="showProductDetail(product)" color="accent">DETAIL</button>
+        -->
+        <!--
+        <button mat-raised-button *ngIf="(!product.isClicked && !product.isTimerRunning)" (click)="cd1.begin()" color="accent">
+            &emsp;&emsp;&emsp;&emsp;START TIMER&emsp;&emsp;&emsp;&emsp;
+        </button>
+      -->
+      <button mat-raised-button *ngIf="(product.isClicked && product.isTimerRunning)" (click)="cd1.stop()" color="warn">
+            &emsp;&emsp;&emsp;&emsp;STOP TIMER&emsp;&emsp;&emsp;&emsp;
+          </button>
+        <button mat-raised-button *ngIf="(product.isClicked && !product.isTimerRunning)" (click)="cd1.restart()" color="accent">
+            SAVE AND RESTART TIMER
+          </button>
+      </mat-card-actions>
+    </mat-card-content>
   </mat-card>
 </div>
 
 
 <div class="basic-container" *ngIf="isGrid">
-    <mat-grid-list cols="10" rowHeight="100px">
-      <mat-grid-tile (click)="gridClick(product,id,tile.text)" *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
-        {{tile.text}}
-      </mat-grid-tile>
-    </mat-grid-list>
+  <mat-grid-list cols="10" rowHeight="100px">
+    <mat-grid-tile (click)="gridClick(product,id,tile.text,isWasted)" *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
+      [style.background]="tile.color">
+      {{tile.text}}
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+
+<div class="basic-container" *ngIf="isProduct">
+  <h2>{{ product.name | uppercase }} Details</h2>
+  <div>
+    <span>id: </span>{{product.id}}</div>
+  <div>
+    <img mat-card-image src="{{product.img}}" alt="{{product.name}}">
   </div>
+  <div>
+    <label>Name:
+      <input [(ngModel)]="product.name" placeholder="name" />
+    </label>
+  </div>
+  <button mat-raised-button color="accent" (click)="showProductGoBack()">GoBack</button>
+  <button mat-raised-button color="accent">Save</button>
+</div>

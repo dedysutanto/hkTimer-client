@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CountdownModule } from 'ngx-countdown';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from './modules/material.module';
 import { AppRoutingModule } from './modules/app-routing.module';
@@ -26,9 +28,10 @@ import { ProductCounterService } from './product-counter.service';
     AppRoutingModule,
     // HttpClientModule,
     HttpModule,
-    BrowserAnimationsModule
-    // FormsModule,
-    // ReactiveFormsModule
+    BrowserAnimationsModule,
+    CountdownModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService, ProductCounterService],
   bootstrap: [AppComponent]
