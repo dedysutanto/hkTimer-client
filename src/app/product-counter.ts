@@ -2,7 +2,7 @@ import { Product } from './product';
 
 export class ProductCounter {
     id: number;
-    uuid: string;
+    // uuid: string;
     product: number;
     // product_id: number;
     start_time: number;
