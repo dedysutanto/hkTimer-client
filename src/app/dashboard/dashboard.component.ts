@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
         }
         this.product = product;
         // This will update every seconds
-        this.saveProduct(product);
+        // this.saveProduct(product);
         //let leftSeconds = event.left / 1000;
         //if (leftSeconds < (product.limit * 60)) {
         //  product.isWarning = true;
