@@ -1,5 +1,4 @@
-// import { Component, OnInit, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { Component, OnInit, enableProdMode } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ProductService } from '../product.service';
 import { Product } from '../product';

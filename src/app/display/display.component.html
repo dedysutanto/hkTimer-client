@@ -1,0 +1,19 @@
+<div class="flex-container">
+  <mat-card color="warn" class="hokben-card" *ngFor="let product of products">
+    <mat-card-header>
+      <div mat-card-avatar class="hokben-header-image"></div>
+      <mat-card-title>{{product.name}}</mat-card-title>
+      <mat-card-subtitle>Holding Time: {{product.duration}} min</mat-card-subtitle>
+    </mat-card-header>
+
+    <img mat-card-image src="{{product.img}}" alt="{{product.name}}">
+
+    <mat-card-content *ngIf="product.displayed_item > 0" style="text-align: center">
+      <span [ngClass]="(product.isWarning)?'centered-big-blink':'centered-big-text'">
+        <countdown #cd1 [config]="{ demand: !product.isTimerRunning, leftTime: product.left_time, 
+            template: '$!h!:$!m!:$!s!', 
+            notify: product.notify }" (finished)="onFinished(product)" (event)="onEvent($event, product)"></countdown>
+      </span>
+    </mat-card-content>
+  </mat-card>
+</div>
