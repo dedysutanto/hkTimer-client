@@ -81,33 +81,24 @@ export class DashboardComponent implements OnInit {
           product.checkIsWarning();
         }
         this.product = product;
-        // This will update every seconds
-        // this.saveProduct(product);
-        //let leftSeconds = event.left / 1000;
-        //if (leftSeconds < (product.limit * 60)) {
-        //  product.isWarning = true;
-        //}
-      /*
-      if (product.isTimerRunning) {
-        this.product = product;
-        this.product.left_time -= 1;
-      }
-      */
     }
   }
 
   saveProductCounter(product: Product): void {
-    //let productku: ProductCounter;
+    let productcounter: ProductCounter;
+    console.log('Product', product);
+    // this.getProductCounterById(1);
+    //console.log('ProductCounter', this.productcounter);
 
     //this.productcounter.id = 0;
     //this.productcounter.uuid = '';
-    this.productcounter.product = product;
+    productcounter.product = product.id;
     // this.productcounter.product_id = product.id;
-    this.productcounter.displayed_item = product.displayed_item;
-    this.productcounter.wasted_item = product.wasted_item;
-    this.productcounter.start_time = product.start_time;
-    this.productcounter.end_time = product.end_time;
-    this.addProductCounter(this.productcounter);    
+    productcounter.displayed_item = product.displayed_item;
+    productcounter.wasted_item = product.wasted_item;
+    productcounter.start_time = product.start_time;
+    productcounter.end_time = product.end_time;
+    this.addProductCounter(productcounter);
   }
 
   removeCounterRunning(product_id: number): void {
@@ -186,26 +177,19 @@ export class DashboardComponent implements OnInit {
 
   /* END - The Grid related function */
 
-  /* START - Detail Product related function */
-  showProductDetail(product): void {
-    this.product = product;
-    this.product_id = product.id;
-    this.isDashboard = false;
-    this.isProduct = true;
-  }
-
-  showProductGoBack(): void {
-    this.isDashboard = true;
-    this.isProduct = false;
-    this.recalculateCountdown();
-  }
-  /* END - Detail Product related function */
-
   /* START - ProductCounterService */
   addProductCounter(productcounter: ProductCounter) {
     this.productcounterservice.addProductCounter(productcounter).subscribe((productcounter) => {
       this.productcounter = productcounter;
     });
+  }
+
+  getProductCounterById(id: number) {
+    this.productcounterservice.getProductCounterById(id).subscribe((productcounter) => {
+      this.productcounter = productcounter;
+      // console.log(productcounter);
+    });
+    // console.log(this.productcounter);
   }
   /* END - ProductCounterService */
 
@@ -226,15 +210,15 @@ export class DashboardComponent implements OnInit {
 
   getAllProducts() {
     this.productservice.getAllProducts().subscribe((products) => {
-        this.products = products;
-      });
+      this.products = products;
+    });
   }
 
   getAllProductsReset() {
     this.productservice.getAllProducts().subscribe((products) => {
       // This is to reset databases when refresh
       products.forEach(product => { this.resetProduct(product) });
-      this.products = products;    
+      this.products = products;
     });
   }
 
@@ -242,4 +226,19 @@ export class DashboardComponent implements OnInit {
   public ngOnInit() {
     this.getAllProducts();
   }
+
+  /* START - Detail Product related function */
+  showProductDetail(product): void {
+    this.product = product;
+    this.product_id = product.id;
+    this.isDashboard = false;
+    this.isProduct = true;
+  }
+
+  showProductGoBack(): void {
+    this.isDashboard = true;
+    this.isProduct = false;
+    this.recalculateCountdown();
+  }
+  /* END - Detail Product related function */
 }

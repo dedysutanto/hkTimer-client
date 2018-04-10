@@ -18,11 +18,15 @@ export class ProductCounterService {
   ) { }
 
   public addProductCounter(productcounter: ProductCounter): Observable<ProductCounter> {
-    return this.http
-      .post(API_URL + '/productcounter', productcounter)
-      .map(response => {
+    return this.http.post(API_URL + '/productcounter', productcounter).map(response => {
         return new ProductCounter(response.json());
       }).catch(this.handleError);
+  }
+
+  public getProductCounterById(id: number): Observable<ProductCounter> {
+   return this.http.get(API_URL + '/productcounter/' + id).map(response => {
+     return new ProductCounter(response.json());
+   }).catch(this.handleError);
   }
 
   private handleError(error: Response | any) {
