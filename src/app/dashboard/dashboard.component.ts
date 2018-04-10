@@ -1,5 +1,5 @@
 // import { Component, OnInit, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, enableProdMode } from '@angular/core';
 
 import { ProductService } from '../product.service';
 import { Product } from '../product';
@@ -7,8 +7,14 @@ import { Product } from '../product';
 import { ProductCounterService } from '../product-counter.service';
 import { ProductCounter } from '../product-counter';
 
+// import { environment } from '../../environments/environment';
+
 // import { Location } from '@angular/common';
 // import { CountdownComponent } from 'ngx-countdown';
+
+// if (environment.production) {
+//   enableProdMode();
+//}
 
 @Component({
   selector: 'app-dashboard',
@@ -237,46 +243,3 @@ export class DashboardComponent implements OnInit {
     this.getAllProducts();
   }
 }
-
-
-  // We dont need this function!
-  /*
-  productCounter(product: Product): void {
-    // product.start_time_text = new Date();
-    this.counterRunning.push(product.id);
-    product.calculateStartEndTime();
-    // product.calculateLeftTime();
-    // product.start_time = new Date().getTime();
-    // product.end_time = new Date(product.start_time + product.duration * 60 * 1000).getTime();
-    // let now = new Date().getTime();
-    // product.left_time = Math.floor((product.end_time - now) / 1000);
-    this.recalculateCountdown();
-    // this.saveProduct(product); 
-  }
-
-  */
-
-  /*
-
-  function countdown(seconds) {
-  seconds = parseInt(sessionStorage.getItem("seconds"))||seconds;
-
-  function tick() {
-    seconds--; 
-    sessionStorage.setItem("seconds", seconds)
-    var counter = document.getElementById("timer");
-    var current_minutes = parseInt(seconds/60);
-    var current_seconds = seconds % 60;
-    counter.innerHTML = current_minutes + ":" + (current_seconds < 10 ? "0" : "") + current_seconds;
-    if( seconds > 0 ) {
-      setTimeout(tick, 1000);
-    } 
-  }
-  tick();
-}
-
-countdown(120);
-
-
-    <div id="timer">2:00</div>
-  */
