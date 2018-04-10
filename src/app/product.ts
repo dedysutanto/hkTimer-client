@@ -20,7 +20,7 @@ export class Product {
     constructor(value: Object = {}) {
         Object.assign(this, value);
         // this.lefttime = this.duration;
-        for( let i=1; i <= this.duration * 60; i++ ) {
+        for (let i = 1; i <= this.duration * 60; i++) {
             this.notify.push(i);
         }
     }
@@ -32,7 +32,7 @@ export class Product {
     }
 
     public calculateLeftTime(): void {
-        let now = new Date().getTime();
+        const now = new Date().getTime();
         if ((this.end_time > now) && (this.isTimerRunning)) {
             this.left_time = Math.floor((this.end_time - now) / 1000);
             // console.log("Now: ", now);
@@ -55,7 +55,7 @@ export class Product {
     public stopCounter(): void {
         this.isTimerRunning = false;
         this.isWarning = true;
-        if (this.left_time != 0) {
+        if (this.left_time !== 0) {
             this.end_time = this.start_time + (((this.duration * 60) - this.left_time) * 1000);
         }
     }
