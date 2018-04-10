@@ -1,8 +1,8 @@
-.example-card {
+.hokben-card {
     max-width: 220px;
   }
   
-  .example-header-image {
+  .hokben-header-image {
     background-image: url('https://www.hokben.co.id/assets-front/img/logo.png');
     background-size: cover;
   } 

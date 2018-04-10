@@ -1,7 +1,7 @@
 <div class="flex-container" *ngIf="isDashboard">
-  <mat-card color="warn" class="example-card" *ngFor="let product of products">
+  <mat-card color="warn" class="hokben-card" *ngFor="let product of products">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+      <div mat-card-avatar class="hokben-header-image"></div>
       <mat-card-title>{{product.name}}</mat-card-title>
       <mat-card-subtitle>Holding Time: {{product.duration}} min</mat-card-subtitle>
     </mat-card-header>
@@ -15,10 +15,7 @@
 
     <mat-card-content *ngIf="product.displayed_item > 0" style="text-align: center">
       <span [ngClass]="(product.isWarning)?'centered-big-blink':'centered-big-text'">
-        <!--
-          <countdown #countdown [config]="{ demand: true, leftTime: product.left_time, 
-          -->
-          <countdown #cd1 [config]="{ demand: !product.isTimerRunning, leftTime: product.left_time, 
+        <countdown #cd1 [config]="{ demand: !product.isTimerRunning, leftTime: product.left_time, 
             template: '$!h!:$!m!:$!s!', 
             notify: product.notify }" (finished)="onFinished(product)" (event)="onEvent($event, product)"></countdown>
       </span>
@@ -65,12 +62,15 @@
             &emsp;&emsp;&emsp;&emsp;START TIMER&emsp;&emsp;&emsp;&emsp;
         </button>
       -->
-      <button mat-raised-button *ngIf="(product.isClicked && product.isTimerRunning)" (click)="cd1.stop()" color="warn">
-            &emsp;&emsp;&emsp;&emsp;STOP TIMER&emsp;&emsp;&emsp;&emsp;
-          </button>
+        <button mat-raised-button *ngIf="(product.isClicked && product.isTimerRunning)" (click)="cd1.stop()" color="warn">
+          &emsp;&emsp;&emsp;STOP TIMER&emsp;&emsp;&emsp;
+        </button>
+        <button mat-raised-button *ngIf="(product.isClicked && !product.isTimerRunning)" (click)="saveProductCounter(product)" color="accent">
+          SAVE
+        </button>
         <button mat-raised-button *ngIf="(product.isClicked && !product.isTimerRunning)" (click)="cd1.restart()" color="accent">
-            SAVE AND RESTART TIMER
-          </button>
+          RESTART
+        </button>
       </mat-card-actions>
     </mat-card-content>
   </mat-card>
@@ -86,7 +86,7 @@
   </mat-grid-list>
 </div>
 
-
+<!--
 <div class="basic-container" *ngIf="isProduct">
   <h2>{{ product.name | uppercase }} Details</h2>
   <div>
@@ -102,3 +102,4 @@
   <button mat-raised-button color="accent" (click)="showProductGoBack()">GoBack</button>
   <button mat-raised-button color="accent">Save</button>
 </div>
+-->
