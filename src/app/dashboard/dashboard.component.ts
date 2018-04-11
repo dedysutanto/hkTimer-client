@@ -1,3 +1,4 @@
+// import { Component, Input, OnInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 import { ProductService } from '../product.service';
@@ -64,8 +65,9 @@ export class DashboardComponent implements OnInit {
   }
 
   saveProductCounter(product: Product): void {
-    let productcounter: ProductCounter;
-    productcounter = new ProductCounter;
+    // let productcounter: ProductCounter; // = new ProductCounter();
+    // productcounter = new ProductCounter;
+    const productcounter: ProductCounter = new ProductCounter();
 
     productcounter.product = product.id;
     productcounter.displayed_item = product.displayed_item;
@@ -202,9 +204,11 @@ export class DashboardComponent implements OnInit {
   /**********************/
   /* On Start Component */
   /**********************/
-  public ngOnInit() {
+  ngOnInit() {
     this.getAllProducts();
   }
+
+  /* END */
 
   /* START - Detail Product related function */
   showProductDetail(product): void {
