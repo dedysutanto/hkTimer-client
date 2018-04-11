@@ -26,10 +26,10 @@
         </tr>
         <tr>
           <td>
-            <button mat-raised-button color="primary" (click)="showTheGrid(product, false)">{{product.displayed_item}}</button>
+            <button mat-raised-button color="primary" (click)="showTheGrid(product, false)" [disabled]="!product.isTimerRunning">{{product.displayed_item}}</button>
           </td>
           <td>
-            <button mat-raised-button color="primary" (click)="showTheGrid(product, true)">{{product.wasted_item}}</button>
+            <button mat-raised-button color="primary" (click)="showTheGrid(product, true)" [disabled]="!product.isTimerRunning">{{product.wasted_item}}</button>
           </td>
         </tr>
       </table>
