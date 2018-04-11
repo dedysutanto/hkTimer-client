@@ -33,6 +33,16 @@ export class Product {
         }
     }
 
+    public checkIsMainMenuWarning(): void {
+        const timerWarning = 900;
+        const timerRunning = 180
+
+        if ((this.isTimerRunning) && (!this.isWarning)) {
+            // Do something here
+            console.log("Hi");
+        }
+    }
+
     public calculateLeftTime(): void {
         const now = new Date().getTime();
         if ((this.end_time > now) && (this.isTimerRunning)) {
