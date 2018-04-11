@@ -8,6 +8,7 @@ export class Product {
     isTimerRunning: boolean;
     isClicked: boolean;
     isMainMenu: boolean;
+    isMainMenuWarning: boolean = false;
     // uuid: string;
     start_time: number;
     // start_time_text: string;
