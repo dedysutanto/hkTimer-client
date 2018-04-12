@@ -72,8 +72,8 @@ export class DashboardComponent implements OnInit {
     productcounter.product = product.id;
     productcounter.displayed_item = product.displayed_item;
     productcounter.wasted_item = product.wasted_item;
-    productcounter.start_time = Math.floor(product.start_time/1000);
-    productcounter.end_time = Math.floor(product.end_time/1000);
+    productcounter.start_time = Math.floor(product.start_time / 1000);
+    productcounter.end_time = Math.floor(product.end_time / 1000);
     // console.log(productcounter);
     this.addProductCounter(productcounter);
     this.resetProduct(product);
