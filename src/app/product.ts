@@ -17,6 +17,7 @@ export class Product {
     displayed_item: number;
     wasted_item: number;
     left_time: number;
+    level: number;
     notify = [];
 
     constructor(value: Object = {}) {

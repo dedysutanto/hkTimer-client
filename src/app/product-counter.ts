@@ -1,7 +1,8 @@
 import { Product } from './product';
 
 export class ProductCounter {
-    id: number;
+    id : string;
+    // id: number;
     // uuid: string;
     product: number;
     // product_id: number;

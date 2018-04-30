@@ -11,6 +11,8 @@ import {
   MatGridListModule
 } from '@angular/material';
 
+import { MatDividerModule } from '@angular/material/divider';
+
 @NgModule({
   imports: [
     MatButtonModule,
@@ -18,7 +20,8 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule
 ],
 exports: [
     CdkTableModule,
@@ -28,6 +31,7 @@ exports: [
     MatIconModule,
     MatCardModule,
     MatGridListModule,
+    MatDividerModule
 ]
 })
 export class MaterialModule { }
