@@ -60,6 +60,9 @@ export class DashboardComponent implements OnInit {
         if (!product.isWarning) {
           product.checkIsWarning();
         }
+        if (product.level == 1) {
+          product.checkIsMainMenuWarning();
+        }
         this.product = product;
     }
   }

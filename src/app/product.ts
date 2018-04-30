@@ -18,6 +18,7 @@ export class Product {
     wasted_item: number;
     left_time: number;
     level: number;
+    main_menu_warning_end: number;
     notify = [];
 
     constructor(value: Object = {}) {
@@ -36,11 +37,27 @@ export class Product {
 
     public checkIsMainMenuWarning(): void {
         const timerWarning = 900;
-        const timerRunning = 180
+        // const timerWarning = 120;
+        const timerRunning = 60;
 
         if ((this.isTimerRunning) && (!this.isWarning)) {
             // Do something here
-            console.log("Hi");
+            let isTime = this.left_time % timerWarning;
+
+            if ((isTime == 0) && (this.left_time != (this.duration * 60))) {
+                this.main_menu_warning_end = this.left_time - timerRunning;
+                this.isMainMenuWarning = true;
+            } else {
+                if (this.main_menu_warning_end > this.left_time) {
+                    this.isMainMenuWarning = false;
+                }
+            }
+
+            // console.log("Warning Menu:", this.isMainMenuWarning);
+            // console.log("Duration:", this.duration - timerRunning);
+            // console.log("Time Left Main Menu:", this.main_menu_warning_end); 
+            // console.log("Time Left:", this.left_time); 
+                          
         }
     }
 

@@ -16,7 +16,7 @@
     </ng-template>
 
     <mat-card-content *ngIf="product.displayed_item > 0" style="text-align: center">
-      <span [ngClass]="(product.isWarning)?'centered-big-blink':'centered-big-text'">
+      <span [ngClass]="((product.isWarning)||(product.isMainMenuWarning))?'centered-big-blink':'centered-big-text'">
         <countdown #cd1 [config]="{ demand: !product.isTimerRunning, leftTime: product.left_time, 
             template: '$!h!:$!m!:$!s!', 
             notify: product.notify }" (finished)="onFinished(product)" (event)="onEvent($event, product)"></countdown>
