@@ -33,6 +33,8 @@ export class Product {
         if ((this.isTimerRunning) && (this.left_time < this.limit * 60)) {
             this.isWarning = true;
         }
+        // console.log("Limit: ", this.limit)
+        // console.log("Duration: ", this.duration)
     }
 
     public checkIsMainMenuWarning(): void {
@@ -80,6 +82,7 @@ export class Product {
         this.isClicked = true;
         this.isTimerRunning = true;
         this.left_time = this.duration;
+        // console.log("Start Product ID: ", this.id)
     }
 
     public stopCounter(): void {
