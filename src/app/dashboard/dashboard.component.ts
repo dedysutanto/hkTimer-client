@@ -96,16 +96,16 @@ export class DashboardComponent implements OnInit {
   recalculateCountdown(): void {
     // this.counterRunning;
     let product: Product;
-    console.log("Products: ", this.products);
+    // console.log("Products: ", this.products);
 
     for (let i = 0; i < this.counterRunning.length; i++) {
       // const productID = this.counterRunning[i] - 1;
       const productID = this.counterRunning[i];
-      console.log("Re ProductID: ", productID);
+      // console.log("Re ProductID: ", productID);
       product = this.products[productID];
       product.calculateLeftTime();
       this.saveProduct(product);
-      console.log("ID:", this.products[productID])
+      // console.log("ID:", this.products[productID])
     }
   }
 
@@ -151,7 +151,7 @@ export class DashboardComponent implements OnInit {
       // product.calculateStartEndTime();
       //  this.product = product;
       let index = this.products.findIndex(x=>x.id === this.product.id)
-      console.log("Index: ", index);
+      // console.log("Index: ", index);
       //this.counterRunning.push(this.product.id);
       this.counterRunning.push(index);
       // console.log("CounterRunning: ", this.counterRunning);
