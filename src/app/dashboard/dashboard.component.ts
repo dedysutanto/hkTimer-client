@@ -101,6 +101,7 @@ export class DashboardComponent implements OnInit {
     for (let i = 0; i < this.counterRunning.length; i++) {
       // const productID = this.counterRunning[i] - 1;
       const productID = this.counterRunning[i];
+      // const productID = this.products[this.counterRunning[i]].id;
       // console.log("Re ProductID: ", productID);
       product = this.products[productID];
       product.calculateLeftTime();
