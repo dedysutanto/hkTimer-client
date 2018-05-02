@@ -4,7 +4,7 @@
   <mat-card color="warn" class="hokben-card" *ngIf="product.level==1">
     <mat-card-header>
       <div mat-card-avatar class="hokben-header-image"></div>
-      <mat-card-title>{{product.name}}</mat-card-title>
+      <mat-card-title><strong>{{product.name}}</strong></mat-card-title>
       <mat-card-subtitle>Holding Time: {{product.duration}} min</mat-card-subtitle>
     </mat-card-header>
     <span *ngIf="!product.isClicked;then clear else blink"></span>
@@ -82,7 +82,7 @@
     <mat-card color="warn" class="hokben-card" *ngIf="product.level==2">
       <mat-card-header>
         <div mat-card-avatar class="hokben-header-image"></div>
-        <mat-card-title>{{product.name}}</mat-card-title>
+        <mat-card-title><strong>{{product.name}}</strong></mat-card-title>
         <mat-card-subtitle>Holding Time: {{product.duration}} min</mat-card-subtitle>
       </mat-card-header>
       <span *ngIf="!product.isClicked;then clear else blink"></span>
@@ -160,7 +160,7 @@
     <mat-card color="warn" class="hokben-card" *ngIf="product.level==3">
       <mat-card-header>
         <div mat-card-avatar class="hokben-header-image"></div>
-        <mat-card-title>{{product.name}}</mat-card-title>
+        <mat-card-title><strong>{{product.name}}</strong></mat-card-title>
         <mat-card-subtitle>Holding Time: {{product.duration}} min</mat-card-subtitle>
       </mat-card-header>
       <span *ngIf="!product.isClicked;then clear else blink"></span>
